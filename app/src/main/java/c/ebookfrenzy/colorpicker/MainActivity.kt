@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
@@ -130,11 +131,10 @@ class MainActivity : AppCompatActivity() {
         for (color in savedColors)
             stringSavedColors.add(color.toString())
 
-        //hello world
 
         if(!savedColors.isEmpty()){
-            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringSavedColors)
-            list_view.adapter = adapter
+            //val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringSavedColors)
+            list_view.adapter = MyCustomAdapter()
         }
 
         // Set a click listener for popup's button widget
@@ -156,5 +156,34 @@ class MainActivity : AppCompatActivity() {
                 0, // X offset
                 0 // Y offset
         )
+    }
+}
+
+private class MyCustomAdapter(context : Context): BaseAdapter() {
+
+    private val mContext: Context
+
+    init{
+        mContext = context
+    }
+
+    //responsible for how many rows in my list
+    override fun getCount(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    //
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    //
+    override fun getItem(p0: Int): Any {
+        return "Test String"
+    }
+
+    //renders out each row
+    override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
+
     }
 }
