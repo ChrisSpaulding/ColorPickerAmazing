@@ -1,4 +1,4 @@
-package com.example.android.number2
+package c.ebookfrenzy.colorpicker
 
 data class customColor(var red:Int, var green:Int, var blue:Int, var name:String)
 {

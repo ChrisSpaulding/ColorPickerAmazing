@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Colorpicker</string>
+    <string name="app_name">Number2</string>
+    <string name="blue_number">Blue Number</string>
+    <string name="green_number">Green Number</string>
+    <string name="red_number">Red Number</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="no_text"> </string>
+    <string name="color_picker">Color Picker</string>
+    <string name="save">Save</string>
+    <string name="restore">Restore</string>
+    <string name="close_me">Close Me</string>
 </resources>

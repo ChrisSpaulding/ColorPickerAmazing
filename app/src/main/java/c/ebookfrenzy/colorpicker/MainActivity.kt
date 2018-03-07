@@ -1,4 +1,4 @@
-package com.example.android.number2
+package c.ebookfrenzy.colorpicker
 
 import android.content.Context
 import android.graphics.Color
@@ -12,7 +12,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import c.ebookfrenzy.colorpicker.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 import android.widget.ArrayAdapter
@@ -51,9 +50,6 @@ class MainActivity : AppCompatActivity() {
         setSeekBarListeners(blueSeekBar)
     }
 
-    override fun onStop(){
-        super.onStop()
-    }
 
     private fun setSeekBarListeners(seekBar: SeekBar) {
         seekBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
