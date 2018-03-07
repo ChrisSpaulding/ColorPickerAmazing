@@ -1,18 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="c.ebookfrenzy.colorpicker.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <ImageView
+            android:id="@+id/header_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:src="@drawable/best_icon" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/save"
+            android:onClick="saveOnClick"/>
+
+        <Button
+            android:id="@+id/restoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/restore"
+            android:onClick="restoreOnClick"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <SeekBar
+        android:id="@+id/redBar"
+        android:layout_width="152dp"
+        android:layout_height="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/greenBar"
+        app:layout_constraintEnd_toStartOf="@+id/redNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/redView"
+        app:layout_constraintTop_toBottomOf="@+id/colorNameField" />
+
+    <SeekBar
+        android:id="@+id/greenBar"
+        android:layout_width="154dp"
+        android:layout_height="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/blueBar"
+        app:layout_constraintEnd_toStartOf="@+id/greenNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/greenView"
+        app:layout_constraintTop_toBottomOf="@+id/redBar" />
+
+    <SeekBar
+        android:id="@+id/blueBar"
+        android:layout_width="158dp"
+        android:layout_height="29dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/blueNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/blueView"
+        app:layout_constraintTop_toBottomOf="@+id/greenBar" />
+
     <TextView
+        android:id="@+id/redView"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:text="@string/red"
+        app:layout_constraintBottom_toTopOf="@+id/greenView"
+        app:layout_constraintEnd_toStartOf="@+id/redBar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorNameTextView" />
+
+    <TextView
+        android:id="@+id/greenView"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:text="@string/green"
+        app:layout_constraintBottom_toTopOf="@+id/blueView"
+        app:layout_constraintEnd_toStartOf="@+id/greenBar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/redView" />
+
+    <TextView
+        android:id="@+id/blueView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/blueBar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greenView" />
+
+    <TextView
+        android:id="@+id/redNumber"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="@string/red_number"
+        app:layout_constraintBottom_toTopOf="@+id/greenNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/redBar"
+        app:layout_constraintTop_toBottomOf="@+id/colorNameField" />
+
+    <TextView
+        android:id="@+id/greenNumber"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="@string/green_number"
+        app:layout_constraintBottom_toTopOf="@+id/blueNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/greenBar"
+        app:layout_constraintTop_toBottomOf="@+id/redNumber" />
+
+    <TextView
+        android:id="@+id/blueNumber"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="@string/blue_number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/blueBar"
+        app:layout_constraintTop_toBottomOf="@+id/greenNumber" />
+
+    <TextView
+        android:id="@+id/colorArea"
+        android:layout_width="0dp"
+        android:layout_height="89dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/no_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintVertical_bias="0.014" />
+
+    <EditText
+        android:id="@+id/colorNameField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/redBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/colorNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/colorArea" />
+
+    <TextView
+        android:id="@+id/colorNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom Color Name"
+        app:layout_constraintBottom_toTopOf="@+id/redBar"
+        app:layout_constraintEnd_toStartOf="@+id/colorNameField"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorArea" />
+
 
 </android.support.constraint.ConstraintLayout>
