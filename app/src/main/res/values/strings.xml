@@ -20,4 +20,6 @@
     <string name="saved_color_3">Saved Color 3</string>
     <string name="saved_color_2">Saved Color 2</string>
     <string name="saved_color_1">Saved Color 1</string>
+    <string name="set_color_1">Set Color 1</string>
+    <string name="set_color_2">Set Color 2</string>
 </resources>

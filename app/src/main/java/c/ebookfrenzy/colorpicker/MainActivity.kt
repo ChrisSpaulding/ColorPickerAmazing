@@ -9,14 +9,12 @@ import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
-
-
 class MainActivity : AppCompatActivity() {
     val alpha = 255
     var red = 0
     var blue = 0
     var green = 0
-    var savedColors: ArrayList<customColor> = ArrayList()
+    private var savedColors: ArrayList<customColor> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +63,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         //add the color to the menu
-        for(position in 1..8){
-            if (position <= savedColors.size) {
-                menu.getItem(position-1).title = savedColors[position-1].name
-            }
-        }
+        (1..8)
+                .filter { it <= savedColors.size }
+                .forEach { menu.getItem(it -1).title = savedColors[it -1].name }
         return super.onPrepareOptionsMenu(menu)
     }
 
