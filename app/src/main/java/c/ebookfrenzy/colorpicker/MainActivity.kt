@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         colorArea.setBackgroundColor(Color.argb(alpha, red, green, blue))
 
+
         val redSeekBar = findViewById<SeekBar>(R.id.redBar)
         redSeekBar.max = alpha
         redNumber.text = red.toString()
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         val greenSeekBar = findViewById<SeekBar>(R.id.greenBar)
         greenSeekBar.max = alpha
         greenNumber.text = green.toString()
+
+        
 
         setSeekBarListeners(redSeekBar)
         setSeekBarListeners(greenSeekBar)

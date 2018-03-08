@@ -19,6 +19,7 @@ class theClient : AppCompatActivity() {
     var redTwo = 0
     var blueTwo = 0
     var greenTwo = 255
+    var buttonChoice = "button"
 
     private val PICK_CONTACT_REQUEST = 1;
 
@@ -27,10 +28,23 @@ class theClient : AppCompatActivity() {
         setContentView(R.layout.client_layout)
         colorMixBar.max = hundred
 
+        if("button1" == intent.getStringExtra(buttonChoice)){
+            redOne= intent.getStringExtra(red.twoString()) //need to implement code
+        }
+        else{
+            setColor2 //need to implement code
+        }
         colorOne.setOnClickListener{
+
+                val intent= Intent (this, MainActivity :: class.java)
+                intent.putExtra(buttonChoice, "button1")
+                startActivity(intent)
 
         }
         colorTwo.setOnClickListener{
+            val intent= Intent (this, MainActivity :: class.java)
+            intent.putExtra(buttonChoice, "button2")
+            startActivity(intent)
 
         }
 
