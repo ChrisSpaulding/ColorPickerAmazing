@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-
 import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.client_layout.*
@@ -27,25 +26,28 @@ class theClient : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.client_layout)
         colorMixBar.max = hundred
+        colorView.setBackgroundColor(Color.argb(alpha,redOne,blueOne,greenOne))
 
-        if("button1" == intent.getStringExtra(buttonChoice)){
-            redOne= intent.getStringExtra(red.twoString()) //need to implement code
+        if("button1"== intent.getStringExtra("button")){
+            redOne=intent.getIntExtra("red",0)
+            greenOne=intent.getIntExtra("green",0)
+            blueOne=intent.getIntExtra("blue",0)
         }
         else{
-            setColor2 //need to implement code
+            redTwo=intent.getIntExtra("red",0)
+            greenTwo=intent.getIntExtra("green",0)
+            blueTwo=intent.getIntExtra("blue",0)
         }
-        colorOne.setOnClickListener{
 
+        colorOne.setOnClickListener{
                 val intent= Intent (this, MainActivity :: class.java)
                 intent.putExtra(buttonChoice, "button1")
                 startActivity(intent)
-
         }
         colorTwo.setOnClickListener{
             val intent= Intent (this, MainActivity :: class.java)
             intent.putExtra(buttonChoice, "button2")
             startActivity(intent)
-
         }
 
         colorMixBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

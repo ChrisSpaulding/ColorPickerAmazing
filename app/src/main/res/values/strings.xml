@@ -22,4 +22,9 @@
     <string name="saved_color_1">Saved Color 1</string>
     <string name="set_color_1">Set Color 1</string>
     <string name="set_color_2">Set Color 2</string>
+    <string name="choose">Choose</string>
+    <string name="custom_color_name">Custom Color Name</string>
+    <string name="name">Name</string>
+    <string name="icon_of_the_un_credit_to_the_un_i_guess">Icon of the Un credit to... the UN I guess</string>
+    <string name="choose_color">Choose Color</string>
 </resources>

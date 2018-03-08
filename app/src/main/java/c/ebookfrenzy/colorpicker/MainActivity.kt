@@ -1,5 +1,6 @@
 package c.ebookfrenzy.colorpicker
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -37,6 +38,16 @@ class MainActivity : AppCompatActivity() {
         greenSeekBar.max = alpha
         greenNumber.text = green.toString()
 
+        var buttonName = intent.getStringExtra("button")
+
+        chooseColor.setOnClickListener{
+            val intent = Intent (this,theClient ::class.java)
+            intent.putExtra("red", red)
+            intent.putExtra("green", green)
+            intent.putExtra("blue", blue)
+            intent.putExtra("button", buttonName)
+            startActivity(intent)
+        }
 
 
         setSeekBarListeners(redSeekBar)

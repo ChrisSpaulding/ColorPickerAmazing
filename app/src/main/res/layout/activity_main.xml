@@ -21,8 +21,8 @@
             android:id="@+id/header_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="left"
-            android:src="@drawable/best_icon" />
+            android:layout_gravity="start"
+            android:src="@drawable/best_icon" android:contentDescription="@string/icon_of_the_un_credit_to_the_un_i_guess" />
 
         <Button
             android:id="@+id/saveButton"
@@ -31,13 +31,15 @@
             android:layout_gravity="right"
             android:onClick="saveOnClick"
             android:text="@string/save" />
+
         <Button
-            android:id = "+id/chooseButton"
+            android:id="@+id/chooseColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Choose"
+            android:layout_gravity="center"
+            android:text="@string/choose_color"
             />
+
 
     </android.support.v7.widget.Toolbar>
 
@@ -159,7 +161,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/redBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -170,7 +172,7 @@
         android:id="@+id/colorNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Custom Color Name"
+        android:text="@string/custom_color_name"
         app:layout_constraintBottom_toTopOf="@+id/redBar"
         app:layout_constraintEnd_toStartOf="@+id/colorNameField"
         app:layout_constraintHorizontal_bias="0.5"
