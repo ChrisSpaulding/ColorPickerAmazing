@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import android.widget.*
+import c.ebookfrenzy.colorpicker.R.id.saved_color1
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
@@ -57,13 +58,23 @@ class MainActivity : AppCompatActivity() {
                 red = color.red
                 blue = color.blue
                 green = color.green
-                setColor()
+                setColor(id)
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setColor(){
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        //add the color to the menu
+        for(position in 1..8){
+            if (position <= savedColors.size) {
+                menu.getItem(position-1).title = savedColors[position-1].name
+            }
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    private fun setColor(name :String){
         redBar.progress = red
         redNumber.text = red.toString()
 
@@ -72,6 +83,8 @@ class MainActivity : AppCompatActivity() {
 
         greenBar.progress = green
         greenNumber.text = green.toString()
+
+        colorNameField.setText(name)
 
         colorArea.setBackgroundColor(Color.argb(alpha,red,green,blue))
     }
@@ -108,9 +121,6 @@ class MainActivity : AppCompatActivity() {
         else {
             Toast.makeText(view.context, "Saving The Color $red $green $blue $colorName", Toast.LENGTH_LONG).show()
             savedColors.add(customColor(red, green, blue, colorName))
-
-            //add the color to the menu
-
         }
     }
 }
