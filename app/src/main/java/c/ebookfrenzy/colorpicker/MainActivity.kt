@@ -39,17 +39,35 @@ class MainActivity : AppCompatActivity() {
         greenNumber.text = green.toString()
 
         var buttonName = intent.getStringExtra("button")
+        var redOne= intent.getIntExtra("redOne",0)
+        var greenOne= intent.getIntExtra("greenOne", 0)
+        var blueOne= intent.getIntExtra("blueOne", 0)
+        var redTwo= intent.getIntExtra("redTwo",0)
+        var greenTwo= intent.getIntExtra("greenTwo", 0)
+        var blueTwo= intent.getIntExtra("blueTwo", 0)
 
-        chooseColor.setOnClickListener{
-            val intent = Intent (this,theClient ::class.java)
-            intent.putExtra("red", red)
-            intent.putExtra("green", green)
-            intent.putExtra("blue", blue)
-            intent.putExtra("button", buttonName)
+
+
+        chooseColor.setOnClickListener {
+            if (1 == intent.getIntExtra("button",0)) {
+                redOne = red
+                greenOne = green
+                blueOne = blue
+            } else {
+                redTwo = red
+                greenTwo = green
+                blueTwo = blue
+            }
+            val intent = Intent(this, theClient::class.java)
+            intent.putExtra("redOne", redOne)
+            intent.putExtra("greenOne", greenOne)
+            intent.putExtra("blueOne", blueOne)
+            intent.putExtra("redTwo", redTwo)
+            intent.putExtra("greenTwo", greenTwo)
+            intent.putExtra("blueTwo", blueTwo)
             startActivity(intent)
+
         }
-
-
         setSeekBarListeners(redSeekBar)
         setSeekBarListeners(greenSeekBar)
         setSeekBarListeners(blueSeekBar)

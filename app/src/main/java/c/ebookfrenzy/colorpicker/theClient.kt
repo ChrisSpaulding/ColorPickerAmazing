@@ -13,10 +13,10 @@ class theClient : AppCompatActivity() {
     val alpha = 255
     private val hundred = 100
     var redOne = 0
-    var blueOne = 255
+    var blueOne = 0
     var greenOne = 0
-    var redTwo = 0
-    var blueTwo = 0
+    var redTwo = 255
+    var blueTwo = 255
     var greenTwo = 255
     var buttonChoice = "button"
 
@@ -28,25 +28,33 @@ class theClient : AppCompatActivity() {
         colorMixBar.max = hundred
         colorView.setBackgroundColor(Color.argb(alpha,redOne,blueOne,greenOne))
 
-        if("button1"== intent.getStringExtra("button")){
-            redOne=intent.getIntExtra("red",0)
-            greenOne=intent.getIntExtra("green",0)
-            blueOne=intent.getIntExtra("blue",0)
-        }
-        else{
-            redTwo=intent.getIntExtra("red",0)
-            greenTwo=intent.getIntExtra("green",0)
-            blueTwo=intent.getIntExtra("blue",0)
-        }
+        redOne=intent.getIntExtra("redOne",0)
+        greenOne=intent.getIntExtra("greenOne",0)
+        blueOne=intent.getIntExtra("blueOne",0)
+        redTwo=intent.getIntExtra("redTwo",0)
+        greenTwo=intent.getIntExtra("greenTwo",0)
+        blueTwo=intent.getIntExtra("blueTwo",0)
 
         colorOne.setOnClickListener{
-                val intent= Intent (this, MainActivity :: class.java)
-                intent.putExtra(buttonChoice, "button1")
-                startActivity(intent)
+            val intent= Intent (this, MainActivity :: class.java)
+            intent.putExtra("redOne",redOne)
+            intent.putExtra("greenOne",greenOne)
+            intent.putExtra("blueOne",blueOne)
+            intent.putExtra("redTwo",redTwo)
+            intent.putExtra("greenTwo",greenTwo)
+            intent.putExtra("blueTwo",blueTwo)
+            intent.putExtra("button", 1)
+            startActivity(intent)
         }
         colorTwo.setOnClickListener{
             val intent= Intent (this, MainActivity :: class.java)
-            intent.putExtra(buttonChoice, "button2")
+            intent.putExtra("redOne",redOne)
+            intent.putExtra("greenOne",greenOne)
+            intent.putExtra("blueOne",blueOne)
+            intent.putExtra("redTwo",redTwo)
+            intent.putExtra("greenTwo",greenTwo)
+            intent.putExtra("blueTwo",blueTwo)
+            intent.putExtra("button", 2)
             startActivity(intent)
         }
 
