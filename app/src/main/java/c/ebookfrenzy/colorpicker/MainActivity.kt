@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         greenSeekBar.max = alpha
         greenNumber.text = green.toString()
 
-        
+
 
         setSeekBarListeners(redSeekBar)
         setSeekBarListeners(greenSeekBar)
