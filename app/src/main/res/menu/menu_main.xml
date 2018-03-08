@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context = "c.ebookfrenzy.colorpicker.MainActivity">
 
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="10000"
+        android:title = "@string/settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color1"
+        android:orderInCategory="10"
+        android:title = "@string/saved_color_1"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color2"
+        android:orderInCategory="20"
+        android:title = "@string/saved_color_2"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color3"
+        android:orderInCategory="30"
+        android:title = "@string/saved_color_3"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color4"
+        android:orderInCategory="40"
+        android:title = "@string/saved_color_4"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color5"
+        android:orderInCategory="50"
+        android:title = "@string/saved_color_5"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color6"
+        android:orderInCategory="60"
+        android:title = "@string/saved_color_6"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color7"
+        android:orderInCategory="70"
+        android:title = "@string/saved_color_7"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/saved_color8"
+        android:orderInCategory="80"
+        android:title = "@string/saved_color_8"
+        app:showAsAction="never" />
 </menu>
