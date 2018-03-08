@@ -8,10 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.transition.Slide
 import android.transition.TransitionManager
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
@@ -49,6 +46,11 @@ class MainActivity : AppCompatActivity() {
         setSeekBarListeners(redSeekBar)
         setSeekBarListeners(greenSeekBar)
         setSeekBarListeners(blueSeekBar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
 
@@ -134,7 +136,7 @@ class MainActivity : AppCompatActivity() {
 
         if(!savedColors.isEmpty()){
             //val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringSavedColors)
-            list_view.adapter = MyCustomAdapter()
+            list_view.adapter = MyCustomAdapter(this)
         }
 
         // Set a click listener for popup's button widget
@@ -184,6 +186,8 @@ private class MyCustomAdapter(context : Context): BaseAdapter() {
 
     //renders out each row
     override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
-
+        val textView = TextView(mContext)
+        textView.text = "HERE is my row for my LISTVIEW"
+        return textView
     }
 }

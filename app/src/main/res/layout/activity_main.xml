@@ -3,7 +3,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id = "@+id/root_layout"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="c.ebookfrenzy.colorpicker.MainActivity">
@@ -24,21 +24,15 @@
             android:layout_gravity="left"
             android:src="@drawable/best_icon" />
 
+
+
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/save"
-            android:onClick="saveOnClick"/>
-
-        <Button
-            android:id="@+id/restoreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="@string/restore"
-            android:onClick="restoreOnClick"/>
+            android:onClick="saveOnClick"
+            android:text="@string/save" />
 
     </android.support.v7.widget.Toolbar>
 
