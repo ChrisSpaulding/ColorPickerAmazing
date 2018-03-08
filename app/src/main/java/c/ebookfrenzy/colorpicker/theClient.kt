@@ -26,7 +26,6 @@ class theClient : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.client_layout)
         colorMixBar.max = hundred
-        colorView.setBackgroundColor(Color.argb(alpha,redOne,blueOne,greenOne))
 
         redOne=intent.getIntExtra("redOne",0)
         greenOne=intent.getIntExtra("greenOne",0)
@@ -57,6 +56,8 @@ class theClient : AppCompatActivity() {
             intent.putExtra("button", 2)
             startActivity(intent)
         }
+
+        colorView.setBackgroundColor(Color.argb(alpha,redOne,blueOne,greenOne))
 
         colorMixBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {}

@@ -10,6 +10,15 @@ import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
+/*
+*   TO DO: Have both able to open independently
+*   Act differently based on who opened it
+*   Create 2 apps
+*   Save Data across the universe
+*   Just give up inside
+*
+*/
+
 class MainActivity : AppCompatActivity() {
     val alpha = 255
     var red = 0
