@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import android.widget.*
+import io.reactivex.Single
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
@@ -34,7 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         colorArea.setBackgroundColor(Color.argb(alpha, red, green, blue))
 
-
         val redSeekBar = findViewById<SeekBar>(R.id.redBar)
         redSeekBar.max = alpha
         redNumber.text = red.toString()
@@ -54,8 +54,6 @@ class MainActivity : AppCompatActivity() {
         var redTwo= intent.getIntExtra("redTwo",0)
         var greenTwo= intent.getIntExtra("greenTwo", 0)
         var blueTwo= intent.getIntExtra("blueTwo", 0)
-
-
 
         chooseColor.setOnClickListener {
             if (1 == intent.getIntExtra("button",0)) {
@@ -156,7 +154,17 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(view.context, "Please Select a Name", Toast.LENGTH_SHORT).show()
         else {
             Toast.makeText(view.context, "Saving The Color $red $green $blue $colorName", Toast.LENGTH_LONG).show()
-            savedColors.add(customColor(red, green, blue, colorName))
+            var colorToSave = customColor(red,green,blue, colorName)
+            //add color to array
+            savedColors.add(colorToSave)
+            //add color to database
+            saveColor(colorToSave)
+        }
+    }
+
+    fun saveColor (insertColor:customColor){
+        Single.fromCallable{
+
         }
     }
 }

@@ -4,9 +4,6 @@ import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
 
-/**
- * Created by Spaulding on 3/11/2018.
- */
 interface ColorDao {
 
     @Query("SELECT * FROM ColorDataEntity")
