@@ -17,7 +17,6 @@ import java.util.ArrayList
 *   Create 2 apps
 *   Save Data across the universe
 *   Just give up inside
-*
 */
 
 class MainActivity : AppCompatActivity() {
@@ -47,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         greenSeekBar.max = alpha
         greenNumber.text = green.toString()
 
-        var buttonName = intent.getStringExtra("button")
         var redOne= intent.getIntExtra("redOne",0)
         var greenOne= intent.getIntExtra("greenOne", 0)
         var blueOne= intent.getIntExtra("blueOne", 0)
@@ -73,7 +71,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("greenTwo", greenTwo)
             intent.putExtra("blueTwo", blueTwo)
             startActivity(intent)
-
         }
         setSeekBarListeners(redSeekBar)
         setSeekBarListeners(greenSeekBar)
@@ -158,13 +155,11 @@ class MainActivity : AppCompatActivity() {
             //add color to array
             savedColors.add(colorToSave)
             //add color to database
-            saveColor(colorToSave)
         }
     }
 
-    fun saveColor (insertColor:customColor){
-        Single.fromCallable{
-
-        }
+    fun saveColor(appDatabase: AppDatabase,insertColor:customColor){
+        val insertColorEntity = ColorDataEntitiy(insertColor.name, insertColor.red,insertColor.green, insertColor.blue)
+        appDatabase.colorDao().insert(colorDataEntity = insertColorEntity)
     }
 }
