@@ -1,5 +1,6 @@
 package c.ebookfrenzy.colorpicker
 
+import android.arch.persistence.room.Room
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -7,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
 import android.widget.*
-import io.reactivex.Single
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     var blue = 0
     var green = 0
     private var savedColors: ArrayList<customColor> = ArrayList()
+    private var mDb: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,15 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.my_toolbar))
         header_image.alpha = 1f
 
+        mDb =  Room.databaseBuilder(this, AppDatabase::class.java, "DB-CREATION").allowMainThreadQueries().build()
+        prepareSavedColors()
+
         colorArea.setBackgroundColor(Color.argb(alpha, red, green, blue))
 
+        setUpSeekBars()
+    }
+
+    private fun setUpSeekBars() {
         val redSeekBar = findViewById<SeekBar>(R.id.redBar)
         redSeekBar.max = alpha
         redNumber.text = red.toString()
@@ -46,15 +54,15 @@ class MainActivity : AppCompatActivity() {
         greenSeekBar.max = alpha
         greenNumber.text = green.toString()
 
-        var redOne= intent.getIntExtra("redOne",0)
-        var greenOne= intent.getIntExtra("greenOne", 0)
-        var blueOne= intent.getIntExtra("blueOne", 0)
-        var redTwo= intent.getIntExtra("redTwo",0)
-        var greenTwo= intent.getIntExtra("greenTwo", 0)
-        var blueTwo= intent.getIntExtra("blueTwo", 0)
+        var redOne = intent.getIntExtra("redOne", 0)
+        var greenOne = intent.getIntExtra("greenOne", 0)
+        var blueOne = intent.getIntExtra("blueOne", 0)
+        var redTwo = intent.getIntExtra("redTwo", 0)
+        var greenTwo = intent.getIntExtra("greenTwo", 0)
+        var blueTwo = intent.getIntExtra("blueTwo", 0)
 
         chooseColor.setOnClickListener {
-            if (1 == intent.getIntExtra("button",0)) {
+            if (1 == intent.getIntExtra("button", 0)) {
                 redOne = red
                 greenOne = green
                 blueOne = blue
@@ -95,6 +103,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun prepareSavedColors() {
+        var allColors: List<ColorDataEntity>? = mDb?.colorDao()?.getAllColors()
+        savedColors.clear()
+        addDBColorEnitiesToSavedColors(allColors)
+
+    }
+
+    private fun addDBColorEnitiesToSavedColors(cde :List<ColorDataEntity>?){
+        if(cde != null) {
+            for(DataEntity in cde){
+                val addColor = customColor(DataEntity.red, DataEntity.green,
+                        DataEntity.blue, DataEntity.name)
+                savedColors.add(addColor)
+            }
+        }
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
@@ -155,11 +180,12 @@ class MainActivity : AppCompatActivity() {
             //add color to array
             savedColors.add(colorToSave)
             //add color to database
+            saveColor(colorToSave)
         }
     }
 
-    fun saveColor(appDatabase: AppDatabase,insertColor:customColor){
-        val insertColorEntity = ColorDataEntitiy(insertColor.name, insertColor.red,insertColor.green, insertColor.blue)
-        appDatabase.colorDao().insert(colorDataEntity = insertColorEntity)
+    private fun saveColor(insertColor:customColor){
+        val insertColorEntity = ColorDataEntity(insertColor.name, insertColor.red,insertColor.green, insertColor.blue)
+        mDb?.colorDao()?.insert(colorDataEntity = insertColorEntity)
     }
 }
