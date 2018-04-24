@@ -18,4 +18,7 @@ interface ColorDao {
     @Delete
     fun delete(colorDataEntity: ColorDataEntity)
 
+    //https://stackoverflow.com/questions/44244508/room-persistance-library-delete-all
+    @Query("DELETE FROM ColorDataEntity")
+    fun nukeTable()
 }

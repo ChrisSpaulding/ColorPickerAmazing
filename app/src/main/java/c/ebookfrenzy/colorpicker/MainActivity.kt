@@ -80,6 +80,13 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("blueTwo", blueTwo)
             startActivity(intent)
         }
+
+        clearColor.setOnClickListener{
+            mDb?.colorDao()?.nukeTable()
+            savedColors.clear()
+
+        }
+
         setSeekBarListeners(redSeekBar)
         setSeekBarListeners(greenSeekBar)
         setSeekBarListeners(blueSeekBar)
