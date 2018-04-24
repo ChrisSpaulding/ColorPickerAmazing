@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class ColorDataEntity (
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey ()
     val name : String,
     val red : Int,
     val green: Int,
