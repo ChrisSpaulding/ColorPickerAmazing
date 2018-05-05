@@ -11,14 +11,6 @@ import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
-/*
-*   TO DO: Have both able to open independently
-*   Act differently based on who opened it
-*   Create 2 apps
-*   Save Data across the universe
-*   Just give up inside
-*/
-
 class MainActivity : AppCompatActivity() {
     val alpha = 255
     var red = 0
@@ -32,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
         header_image.alpha = 1f
+        if(intent == null){
+            chooseColor.visibility = View.GONE
+        }
 
         mDb =  Room.databaseBuilder(this, AppDatabase::class.java, "DB-CREATION").allowMainThreadQueries().build()
         prepareSavedColors()
@@ -39,6 +34,16 @@ class MainActivity : AppCompatActivity() {
         colorArea.setBackgroundColor(Color.argb(alpha, red, green, blue))
 
         setUpSeekBars()
+
+        chooseColor.setOnClickListener {
+            var side = intent.getIntExtra("side", 0)
+
+            val launchColorPicker = packageManager.getLaunchIntentForPackage("c.spaulding.colorblenderamazing2")  as? Intent
+            launchColorPicker?.putExtra("red", red)
+            launchColorPicker?.putExtra("green", green)
+            launchColorPicker?.putExtra("blue", blue)
+            launchColorPicker?.putExtra("side", side)
+            setResult(2,launchColorPicker)}
     }
 
     private fun setUpSeekBars() {
@@ -53,33 +58,6 @@ class MainActivity : AppCompatActivity() {
         val greenSeekBar = findViewById<SeekBar>(R.id.greenBar)
         greenSeekBar.max = alpha
         greenNumber.text = green.toString()
-
-        var redOne = intent.getIntExtra("redOne", 0)
-        var greenOne = intent.getIntExtra("greenOne", 0)
-        var blueOne = intent.getIntExtra("blueOne", 0)
-        var redTwo = intent.getIntExtra("redTwo", 0)
-        var greenTwo = intent.getIntExtra("greenTwo", 0)
-        var blueTwo = intent.getIntExtra("blueTwo", 0)
-
-        chooseColor.setOnClickListener {
-            if (1 == intent.getIntExtra("button", 0)) {
-                redOne = red
-                greenOne = green
-                blueOne = blue
-            } else {
-                redTwo = red
-                greenTwo = green
-                blueTwo = blue
-            }
-            val intent = Intent(this, theClient::class.java)
-            intent.putExtra("redOne", redOne)
-            intent.putExtra("greenOne", greenOne)
-            intent.putExtra("blueOne", blueOne)
-            intent.putExtra("redTwo", redTwo)
-            intent.putExtra("greenTwo", greenTwo)
-            intent.putExtra("blueTwo", blueTwo)
-            startActivity(intent)
-        }
 
         clearColor.setOnClickListener{
             mDb?.colorDao()?.nukeTable()
