@@ -9,9 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".theClient">
-        </activity>
-
         <activity
             android:name=".MainActivity">
             <intent-filter>
@@ -19,9 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <data android:mimeType= "text/plain"/>
             </intent-filter>
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".theClient" />
+            <intent-filter>
+                <action android:name="c.ebookfrenzy.colorpicker"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
     </application>
 
