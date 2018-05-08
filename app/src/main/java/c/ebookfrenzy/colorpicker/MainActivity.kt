@@ -24,8 +24,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
         header_image.alpha = 1f
-        if(intent == null){
+        if (intent != null && intent.hasCategory("android.intent.category.LAUNCHER")) {
             chooseColor.visibility = View.GONE
+        }
+        else{
+            chooseColor.visibility = View.VISIBLE
         }
 
         mDb =  Room.databaseBuilder(this, AppDatabase::class.java, "DB-CREATION").allowMainThreadQueries().build()
@@ -36,14 +39,21 @@ class MainActivity : AppCompatActivity() {
         setUpSeekBars()
 
         chooseColor.setOnClickListener {
-            var side = intent.getIntExtra("side", 0)
+            finish()
+        }
+    }
 
-            val launchColorPicker = packageManager.getLaunchIntentForPackage("c.spaulding.colorblenderamazing2")  as? Intent
-            launchColorPicker?.putExtra("red", red)
-            launchColorPicker?.putExtra("green", green)
-            launchColorPicker?.putExtra("blue", blue)
-            launchColorPicker?.putExtra("side", side)
-            setResult(2,launchColorPicker)}
+    override fun finish() {
+        Log.i("FinishCalled","YOU CALL FINISH ~HULK")
+        var side = intent.getIntExtra("side", 0)
+
+        val launchColorPicker: Intent = Intent()
+        launchColorPicker.putExtra("red", red)
+        launchColorPicker.putExtra("green", green)
+        launchColorPicker.putExtra("blue", blue)
+        launchColorPicker.putExtra("side", side)
+        setResult(2,launchColorPicker)
+        super.finish()
     }
 
     private fun setUpSeekBars() {
